@@ -1,0 +1,28 @@
+{
+  "name": "reformed-api",
+  "version": "1.0.0",
+  "description": "API for accessing Reformed creeds and catechisms in a structured format.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mrnazu/reformed-api.git"
+  },
+  "keywords": [
+    "nodejs",
+    "bible",
+    "reformed",
+    "creed"
+  ],
+  "author": "Samuel",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/mrnazu/reformed-api/issues"
+  },
+  "homepage": "https://github.com/mrnazu/reformed-api#readme",
+  "dependencies": {
+    "express": "^4.19.2"
+  }
+}
