@@ -4,38 +4,45 @@ const fs = require('fs');
 const dataPath = path.join(__dirname, '../data');
 
 const getAllCreeds = (req, res) => {
-  fs.readdir(dataPath, (err, files) => {
-    if (err) {
-      return res.status(500).json({ error: 'Failed to read creeds data' });
-    }
-
-    const creeds = files.map(file => {
-      const filePath = path.join(dataPath, file);
-      const rawData = fs.readFileSync(filePath);
-      const creed = JSON.parse(rawData);
-      return {
-        id: file.replace('.json', ''),
-        title: creed.Metadata.Title,
-        year: creed.Metadata.Year,
-        format: creed.Metadata.CreedFormat,
-      };
-    });
-
-    res.json(creeds);
+  const files = fs.readdirSync(dataPath);
+  const creeds = files.map(file => {
+    const content = JSON.parse(fs.readFileSync(path.join(dataPath, file), 'utf8'));
+    return {
+      id: path.basename(file, '.json'),
+      title: content.Metadata.Title,
+      year: content.Metadata.Year,
+      format: content.Metadata.CreedFormat
+    };
   });
+  res.json(creeds);
 };
 
 const getCreedById = (req, res) => {
-  const creedId = req.params.id;
-  const filePath = path.join(dataPath, `${creedId}.json`);
-
-  if (!fs.existsSync(filePath)) {
-    return res.status(404).json({ error: 'Creed not found' });
+  const id = req.params.id;
+  const filePath = path.join(dataPath, `${id}.json`);
+  if (fs.existsSync(filePath)) {
+    const content = JSON.parse(fs.readFileSync(filePath, 'utf8'));
+    res.json(content);
+  } else {
+    res.status(404).send('Creed not found');
   }
-
-  const rawData = fs.readFileSync(filePath);
-  const creed = JSON.parse(rawData);
-  res.json(creed);
 };
 
-module.exports = { getAllCreeds, getCreedById };
+const getQuestionById = (req, res) => {
+  const id = req.params.id;
+  const questionNumber = req.params.questionNumber;
+  const filePath = path.join(dataPath, `${id}.json`);
+  if (fs.existsSync(filePath)) {
+    const content = JSON.parse(fs.readFileSync(filePath, 'utf8'));
+    const question = content.Data.find(item => item.Number == questionNumber);
+    if (question) {
+      res.json(question);
+    } else {
+      res.status(404).send('Question not found');
+    }
+  } else {
+    res.status(404).send('Creed not found');
+  }
+};
+
+module.exports = { getAllCreeds, getCreedById, getQuestionById };

@@ -5,6 +5,7 @@
 #### 1. **Creeds**
 
 **Get All Creeds**
+
 - **Endpoint:** `/api/creeds`
 - **Method:** `GET`
 - **Description:** Retrieve a list of all creeds.
@@ -16,12 +17,13 @@
       "title": "Apostles' Creed",
       "year": "710",
       "format": "Creed"
-    },
+    }
     // More creed objects...
   ]
   ```
 
 **Get Creed by ID**
+
 - **Endpoint:** `/api/creeds/:id`
 - **Method:** `GET`
 - **Description:** Retrieve details of a specific creed by ID.
@@ -51,6 +53,7 @@
 #### 2. **Metadata**
 
 **Get All Metadata**
+
 - **Endpoint:** `/api/metadata`
 - **Method:** `GET`
 - **Description:** Retrieve a list of metadata for all creeds.
@@ -62,12 +65,13 @@
       "title": "Apostles' Creed",
       "year": "710",
       "format": "Creed"
-    },
+    }
     // More metadata objects...
   ]
   ```
 
 **Get Metadata by ID**
+
 - **Endpoint:** `/api/metadata/:id`
 - **Method:** `GET`
 - **Description:** Retrieve metadata for a specific creed by ID.
@@ -86,6 +90,7 @@
 #### 3. **Search**
 
 **Search Creeds**
+
 - **Endpoint:** `/api/search`
 - **Method:** `GET`
 - **Description:** Search for creeds based on a query string.
@@ -102,4 +107,22 @@
     }
   ]
   ```
-Thanks yall :)
+
+#### 4. **Question**
+
+**Get Specific Question from Catechism**
+
+- **Endpoint:** `/creeds/:id/questions/:questionNumber`
+- **Method:** `GET`
+- **Description:** Retrieves a specific question from a catechism by its ID and question number.
+- **Response:**
+  ```json
+  [
+    {
+      "Number": "11",
+      "Question": "...",
+      "Answer": "..."
+    }
+  ]
+  ```
+  Thanks yall :)

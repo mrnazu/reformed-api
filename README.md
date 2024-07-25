@@ -69,7 +69,7 @@ This API provides access to various Reformed creeds and confessions, including d
   - **Success Response:**
     - **Code:** 200
     - **Content:** List of creeds matching the search term.
-
+    
 ## Error Handling
 
 Errors are handled with a generic message and a 500 status code. Custom error handling can be added if needed.
